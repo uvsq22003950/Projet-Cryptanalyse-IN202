@@ -1,0 +1,16 @@
+#Texte1
+abc=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+
+def attackcesar(phrase):
+    for i in range(1,27):
+        res=''
+        for c in phrase:
+            if c not in abc:
+                res+=c
+            else:
+                c=abc[(abc.index(c)+i)%26]
+                res+=c
+        print(res)
+attackcesar('kd oqnbgzhm ehbghdq ztqz tm bncd ozq rtarshstshnm zkogzadshptd: bgzptd kdssqd drs qdlokzbdd ozq tmd ztsqd. tshkhrdq kz eqdptdmbd cdr kdssqdr ontq cdbncdq kd ldrrzfd.')
+
+#le prochain fichier aura un code par substitution alphabetique: chaque lettre est remplacee par une autre. utiliser la frequence des lettres pour decoder le message.
