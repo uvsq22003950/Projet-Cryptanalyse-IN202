@@ -1,0 +1,77 @@
+#Texte 3
+abc=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+def stats(phrase):
+    stat=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    for c in phrase:
+        i=abc.index(c)
+        stat[i]+=1
+    return stat
+
+
+
+def chiffre_car_cesar(car,k):
+       return abc[(abc.index(car)+k)%26]
+
+def freq(phrase):
+    F=[]
+    phrase2=''
+
+    for c in phrase:
+        if c in abc:
+            phrase2+=c
+
+    stat= stats(phrase2)
+    n=len(phrase2)
+
+    for i in stat:
+        F.append(i/len(phrase2))
+    
+    return F
+
+
+
+def chiff_vig(phrase,cle):
+    ncle=len(cle)
+    totalcle=[]
+    res="" 
+    
+
+    n=len(phrase) 
+
+ 
+    
+    for i in range(n):
+        totalcle.append(cle[i%ncle])
+
+
+    for i in range(n):
+        if phrase[i] in abc:
+            res+= chiffre_car_cesar(phrase[i],totalcle[i])
+        else:
+            res+= phrase[i]
+    return res
+
+
+
+
+
+
+def attackvig(phrase):
+
+    cleattack=[[-a,-b] for a in range(26) for b in range(26)] #Clef de 2 lettres
+    cleattack1=[[-a,-b,-c] for a in range(26) for b in range(26) for c in range(26)] #Clef de 3 lettres 
+    cleattack2=[[-a,-b,-c,-d] for a in range(26) for b in range(26) for c in range(26) for d in range(26)] #Clef de 4 lettres
+    cleattack=cleattack+cleattack1+cleattack2
+    
+    for i in range(len(cleattack)):
+        test=chiff_vig(phrase,cleattack[i])
+        F= freq(test)
+        if 'w' not in test and 'y' not in test and F[4]>0.15 :
+            
+            print(test,cleattack[i])
+
+attackvig("dceuq e n'ehfp cg p'kyhhep uqfw cgiy citudm c gzudiq ni ezhd px c jhptv ep cggsht. kg hdtymdt xdzei gdx rzyq wir mvzxpw, cifcchdb znwd ccyw wy lkcsht, dp isgd uqfw wy ?")
+
+#bravo a l'aide de l'indice vous avez reussi a casser ce code et a finir ce devoir. le dernier texte est pour les braves, regardez vous dans un miroir, en etes vous un ? [-2, -11, -4, -25] (donc la clé = clez)
+
+#Le texte 4 j'aurai peut être pu le trouver mais à la main avec de la logique donc tant pis
